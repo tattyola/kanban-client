@@ -49,15 +49,15 @@ const Card = (props) => {
                     <button
                         type="button"
                         className="btn btn-outline-primary btn-sm"
-                        onClick={() => props.changePriority(props.task._id, +props.task.priority - 1)}
-                        disabled={props.priorities[0] === +props.task.priority}>
-                        ↓
+                        onClick={() => props.changePriority(props.task._id, +props.task.priority + 1)}
+                        disabled={props.priorities[props.priorities.length - 1] === +props.task.priority}>
+                    ↓
                     </button>
                     <button
                         type="button"
                         className="btn btn-outline-primary btn-sm"
-                        onClick={() => props.changePriority(props.task._id, +props.task.priority + 1)}
-                        disabled={props.priorities[props.priorities.length - 1] === +props.task.priority}>
+                        onClick={() => props.changePriority(props.task._id, +props.task.priority - 1)}
+                        disabled={props.priorities[0] === +props.task.priority}>
                         ↑
                     </button>
                 </li>

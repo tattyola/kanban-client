@@ -5,7 +5,7 @@ import Column from "./components/Column";
 import CreateTaskModal from "./components/CreateTaskModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getStatuses } from './api/statusServices'
-import {deleteTaskById, getTasks, patchPriority, patchTaskStatus, patchTask, postTask} from './api/taskServices';
+import { deleteTaskById, getTasks, patchPriority, patchTaskStatus, patchTask, postTask } from './api/taskServices';
 
 function App() {
 
@@ -33,12 +33,10 @@ function App() {
     const updateTask = (id, newTask) => {
         dispatch(patchTask(id, newTask));
     }
-
     useEffect(() => {
         dispatch(getStatuses());
         dispatch(getTasks());
     }, []);
-
     console.log(statuses)
     console.log(tasks)
 
@@ -53,7 +51,6 @@ function App() {
             <div className="container text-center">
                 <div className="row align-items-start">
                     {statuses.map(status => (
-
                         <Column
                             key={status._id}
                             status={status}
