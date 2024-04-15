@@ -1,75 +1,42 @@
 import './App.css';
-import axios from 'axios';
-import {useEffect, useState} from "react";
+import { useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.css'
-import Column from "./Column";
-import CreateTaskModal from "./CreateTaskModal";
+import Column from "./components/Column";
+import CreateTaskModal from "./components/CreateTaskModal";
+import { useDispatch, useSelector } from "react-redux";
+import { getStatuses } from './api/statusServices'
+import {deleteTaskById, getTasks, patchPriority, patchTaskStatus, patchTask, postTask} from './api/taskServices';
 
 function App() {
 
-    const [statuses, setStatuses] = useState([]);
-    const [tasks, setTasks] = useState([])
+    const dispatch = useDispatch();
+    const statuses = useSelector(state => state.statuses);
+    const tasks = useSelector(state => state.tasks);
     const priorities = [1, 2, 3];
 
-    const getStatuses = () => {
-        axios.get('https://expressjs-server.vercel.app/statuses')
-            .then(res => {
-                setStatuses(res.data)
-            })
-            .catch(err => console.log(err))
-    }
-    const getTasks = () => {
-        axios.get('https://expressjs-server.vercel.app/tasks')
-            .then(res => {
-                setTasks(res.data);
-            })
-            .catch(err => console.log(err))
-    }
     const changePriority = (id, newPriority) => {
-        axios.patch(`https://expressjs-server.vercel.app/tasks/${id}`, {priority: newPriority})
-            .then(res => {
-                getTasks();
-            })
-            .catch(err => console.log(err))
+        dispatch(patchPriority(id, newPriority))
     }
     const changeStatus = (id, currentStatus, direction) => {
         const myStatuses = statuses.map(status => status.title);
         const currentIndex = myStatuses.indexOf(currentStatus);
         const newIndex = currentIndex + direction;
         const newStatus = myStatuses[newIndex];
-        axios.patch(`https://expressjs-server.vercel.app/tasks/${id}`, {status: newStatus})
-            .then(res => {
-                getTasks();
-            })
-            .catch(err => alert(err))
+        dispatch(patchTaskStatus(id, newStatus))
     }
     const createTask = (newTask) => {
-        axios.post('https://expressjs-server.vercel.app/tasks', newTask)
-            .then(res => {
-                getTasks();
-            })
-            .catch(error => console.log(error)
-            )
+        dispatch(postTask(newTask));
     }
     const deleteTask = (id) => {
-        axios.delete(`https://expressjs-server.vercel.app/tasks/${id}`)
-            .then(res => {
-                getTasks();
-            })
-            .catch(error => console.log(error)
-            )
+        dispatch(deleteTaskById(id));
     }
     const updateTask = (id, newTask) => {
-        axios.patch(`https://expressjs-server.vercel.app/tasks/${id}`, newTask)
-            .then(res => {
-                getTasks();
-            })
-            .catch(err => alert(err))
+        dispatch(patchTask(id, newTask));
     }
 
     useEffect(() => {
-        getStatuses();
-        getTasks();
+        dispatch(getStatuses());
+        dispatch(getTasks());
     }, []);
 
     console.log(statuses)
@@ -105,5 +72,4 @@ function App() {
         </div>
     );
 }
-
 export default App;
