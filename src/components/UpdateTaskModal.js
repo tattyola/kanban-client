@@ -13,14 +13,7 @@ const UpdateTaskModal = ({task, updateTask, statuses, priorities}) => {
     const update = () => {
         setModal(!modal);
         updateTask(task._id, newTask);
-        // setNewTask(initialState)
     }
-    // const onCancel = () => {
-    //     toggle();
-    //     // setNewTask(initialState)
-    // }
-
-
 
     return (
         <div>

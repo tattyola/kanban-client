@@ -1,6 +1,7 @@
 import React from 'react';
 import DeleteTaskModal from "./DeleteTaskModal";
 import UpdateTaskModal from "./UpdateTaskModal";
+import {connect} from "react-redux";
 
 const Card = (props) => {
 
@@ -81,4 +82,10 @@ const Card = (props) => {
     );
 };
 
-export default Card;
+const mapStateToProps = (state) => {
+    return {
+        priorities: state.priorities,
+    }
+}
+
+export default connect(mapStateToProps)(Card);

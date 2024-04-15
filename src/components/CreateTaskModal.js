@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Input, InputGroup, InputGroupText, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import {connect} from "react-redux";
 
 const CreateTaskModal = ({statuses, priorities, createTask}) => {
 
@@ -103,4 +104,10 @@ const CreateTaskModal = ({statuses, priorities, createTask}) => {
     );
 };
 
-export default CreateTaskModal;
+const mapStateToProps = (state) => {
+    return {
+        priorities: state.priorities,
+    }
+}
+
+export default connect(mapStateToProps)(CreateTaskModal);

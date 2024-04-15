@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.css'
 import Column from "./components/Column";
 import CreateTaskModal from "./components/CreateTaskModal";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { getStatuses } from './api/statusServices'
 import { deleteTaskById, getTasks, patchPriority, patchTaskStatus, patchTask, postTask } from './api/taskServices';
 
@@ -12,7 +12,8 @@ function App() {
     const dispatch = useDispatch();
     const statuses = useSelector(state => state.statuses);
     const tasks = useSelector(state => state.tasks);
-    const priorities = [1, 2, 3];
+    const appName = useSelector(state => state.appName);
+    // const priorities = useSelector(state => state.priorities);
 
     const changePriority = (id, newPriority) => {
         dispatch(patchPriority(id, newPriority))
@@ -42,9 +43,9 @@ function App() {
 
     return (
         <div className="App">
-            <h1>Kanban Board</h1>
+            <h1>{appName}</h1>
             <CreateTaskModal
-                priorities={priorities}
+                // priorities={priorities}
                 statuses={statuses.map(status => status.title)}
                 createTask={createTask}
             />
@@ -56,7 +57,7 @@ function App() {
                             status={status}
                             tasks={tasks}
                             changePriority={changePriority}
-                            priorities={priorities}
+                            // priorities={priorities}
                             changeStatus={changeStatus}
                             statuses={statuses.map(status => status.title)}
                             deleteTask={deleteTask}
