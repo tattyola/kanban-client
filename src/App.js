@@ -37,7 +37,7 @@ function App() {
     useEffect(() => {
         dispatch(getStatuses());
         dispatch(getTasks());
-    }, []);
+    }, [dispatch]);
     console.log(statuses)
     console.log(tasks)
 
