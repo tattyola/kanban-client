@@ -1,6 +1,5 @@
 import axios from "axios";
 import { fetchTasks } from "../reduxStore/actions"
-// const BASE_URL = 'https://expressjs-server.vercel.app'
 const BASE_URL = 'http://localhost:4000'
 
 
@@ -37,6 +36,7 @@ export const postTask = (newTask) => {
             .catch(error => console.log(error))
     }
 }
+
 export const deleteTaskById = (id) => {
     return (dispatch) => {
         axios.delete(`${BASE_URL}/tasks/${id}`)

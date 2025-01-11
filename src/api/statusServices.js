@@ -1,6 +1,5 @@
 import axios from "axios";
 import {fetchStatuses} from "../reduxStore/actions";
-// const BASE_URL = 'https://expressjs-server.vercel.app'
 const BASE_URL = 'http://localhost:4000'
 
 export const getStatuses = () => {

@@ -11,7 +11,7 @@ const DeleteTaskModal = ({ task, deleteTask }) => {
     }
     const onDelete = () => {
         toggle();
-        deleteTask(task._id)
+        deleteTask(task.id)
     }
     const onCancel = () => {
         toggle();

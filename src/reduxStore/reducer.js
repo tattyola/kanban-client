@@ -19,6 +19,8 @@ const kanbanReducer = (state = initialState, action = {}) => {
             const updatedTasks = state.tasks.map(task =>
                 task.id === action.payload ? {...task,priority: task.priority - 1} : task);
             return {...state, tasks: updatedTasks};
+        case 'UPDATE_TASKS':
+            return {...state, tasks: action.payload};
         default:
             return state;
     }

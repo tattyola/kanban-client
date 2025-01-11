@@ -12,7 +12,7 @@ const UpdateTaskModal = ({task, updateTask, statuses, priorities}) => {
     }
     const update = () => {
         setModal(!modal);
-        updateTask(task._id, newTask);
+        updateTask(task.id, newTask);
     }
 
     return (

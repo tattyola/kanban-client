@@ -32,7 +32,7 @@ const Card = (props) => {
                     <button
                         type="button"
                         className="btn btn-outline-info btn-sm"
-                        onClick={() => props.changeStatus(props.task._id, props.task.status, -1)}
+                        onClick={() => props.changeStatus(props.task.id, props.task.status, -1)}
                         disabled={props.statuses[0] === props.task.status}
 
                     >←
@@ -41,7 +41,7 @@ const Card = (props) => {
                     <button
                         type="button"
                         className="btn btn-outline-info btn-sm"
-                        onClick={() => props.changeStatus(props.task._id, props.task.status, 1)}
+                        onClick={() => props.changeStatus(props.task.id, props.task.status, 1)}
                         disabled={props.statuses[props.statuses.length - 1] === props.task.status}
                     >→
                     </button>
@@ -50,14 +50,14 @@ const Card = (props) => {
                     <button
                         type="button"
                         className="btn btn-outline-primary btn-sm"
-                        onClick={() => props.changePriority(props.task._id, +props.task.priority + 1)}
+                        onClick={() => props.changePriority(props.task.id, +props.task.priority + 1)}
                         disabled={props.priorities[props.priorities.length - 1] === +props.task.priority}>
                     ↓
                     </button>
                     <button
                         type="button"
                         className="btn btn-outline-primary btn-sm"
-                        onClick={() => props.changePriority(props.task._id, +props.task.priority - 1)}
+                        onClick={() => props.changePriority(props.task.id, +props.task.priority - 1)}
                         disabled={props.priorities[0] === +props.task.priority}>
                         ↑
                     </button>
